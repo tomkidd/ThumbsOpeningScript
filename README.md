@@ -1,6 +1,6 @@
 # ThumbsOpeningScript
 
-This is the page I put together for Idle Thumbs to automate the reading of the date and episode number. It grabs the latest episode number from the podcast RSS feed and increments it by one, and it displays the date in the format they usually read it in. 
+This is the page I put together at http://schnapple.com/thumbs/ for Idle Thumbs to automate the reading of the date and episode number. It grabs the latest episode number from the podcast RSS feed and increments it by one, and it displays the date in the format they usually read it in. 
 
 As per their request in Idle Thumbs 247, I have added the ability to have the date be the following Wednesday so that if they record the show on Tuesday or prior it will have the date they intend to release it as. I've also added some formatting for phones (just the viewport size). 
 
