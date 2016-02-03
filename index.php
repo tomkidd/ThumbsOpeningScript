@@ -27,6 +27,10 @@
         $(document).ready(function(){
 
             $('#theepisode').text(episode);
+            
+            var d = new Date();
+            
+            $('#wed').prop('checked', (d.getDay() != 3));
    
             setTheDate($('#wed').is(':checked'));
    
@@ -76,6 +80,8 @@
     <body>
         <h1>It's <span id="thedate"></span></h1>
         <h1>This is Idle Thumbs <span id="theepisode"></span></h1>
-        <input type="checkbox" id="wed" checked />Make it be the next Wednesday
+        <input type="checkbox" id="wed" checked />
+        <label for="wed">Make it be the <em>next</em> Wednesday</label>
+        <p><a href="https://github.com/tomkidd/ThumbsOpeningScript" target="_new">Fork me on GitHub</a></p>
     </body>
 </html>
