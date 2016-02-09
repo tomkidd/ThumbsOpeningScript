@@ -31,6 +31,12 @@
             var d = new Date();
 
             $('#wed').prop('checked', (d.getDay() != 3));
+            
+			if (d.getDay() != 3) {
+				$('#wedhit').html("<em>(today is <u>not</u> Wednesday)")
+			} else {
+				$('#wedhit').html("<em>(today <u>is</u> Wednesday)")
+			}
 
             setTheDate($('#wed').is(':checked'));
 
@@ -68,7 +74,7 @@
             } else {
                 $('#thedate').text($.datepicker.formatDate('MM d', d) + suffix + $.datepicker.formatDate(', yy', d));
             }
-
+            
         }
 
         function nextWednesday(date) {
@@ -90,7 +96,8 @@
         <h1>It's <span id="thedate"></span></h1>
         <h1>This is Idle Thumbs <span id="theepisode"></span></h1>
         <input type="checkbox" id="wed" checked />
-        <label for="wed">Make it be the <em>next</em> Wednesday</label>
+        <label for="wed">Make it be the <em>next</em> Wednesday</label><br/>
+        <span id="wedhit"></span>
         <p><a href="https://github.com/tomkidd/ThumbsOpeningScript" target="_new">Fork me on GitHub</a></p>
     </body>
 </html>
