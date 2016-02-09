@@ -21,6 +21,8 @@
 
         <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
         <script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+        
+		<link href='https://fonts.googleapis.com/css?family=Open+Sans:600,600italic,800,800italic' rel='stylesheet' type='text/css'>
 
         <script>
 
@@ -33,9 +35,9 @@
             $('#wed').prop('checked', (d.getDay() != 3));
             
 			if (d.getDay() != 3) {
-				$('#wedhit').html("<em>(today is <u>not</u> Wednesday)")
+				$('#wedhint').html("<em>(today is <u>not</u> Wednesday)")
 			} else {
-				$('#wedhit').html("<em>(today <u>is</u> Wednesday)")
+				$('#wedhint').html("<em>(today <u>is</u> Wednesday)")
 			}
 
             setTheDate($('#wed').is(':checked'));
@@ -88,8 +90,12 @@
         <style>
             h1 {
                 font-weight: bold;
-                font-size: 28px;
+                font-size: 24px;
                 }
+            body {
+            	 font-family: 'Open Sans', sans-serif;
+            	 }
+        
         </style>
     </head>
     <body>
@@ -97,7 +103,7 @@
         <h1>This is Idle Thumbs <span id="theepisode"></span></h1>
         <input type="checkbox" id="wed" checked />
         <label for="wed">Make it be the <em>next</em> Wednesday</label><br/>
-        <span id="wedhit"></span>
-        <p><a href="https://github.com/tomkidd/ThumbsOpeningScript" target="_new">Fork me on GitHub</a></p>
+        <span id="wedhint"></span>
+        <a href="https://github.com/tomkidd/ThumbsOpeningScript" target="_new"><img src="GitHub-Mark-32px.png" style="position: absolute; top: 5; right: 5; border: 0;" width="16" height="16" /></a>
     </body>
 </html>
