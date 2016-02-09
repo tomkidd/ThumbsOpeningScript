@@ -27,17 +27,17 @@
         $(document).ready(function(){
 
             $('#theepisode').text(episode);
-            
+
             var d = new Date();
-            
+
             $('#wed').prop('checked', (d.getDay() != 3));
-   
+
             setTheDate($('#wed').is(':checked'));
-   
+
             $('#wed').click(function () {
                 setTheDate($('#wed').is(':checked'));
             });
-   
+
         })
 
         function setTheDate(wed) {
@@ -50,7 +50,7 @@
             }
 
             var n = d.getDate();
-    
+
             switch(n) {
                 case 1: case 21: case 31: suffix = 'st'; break;
                 case 2: case 22: suffix = 'nd'; break;
@@ -58,7 +58,16 @@
                 default: suffix = 'th';
             }
 
-           $('#thedate').text($.datepicker.formatDate('MM d', d) + suffix + $.datepicker.formatDate(', yy', d));
+            // Ides is the 15th of [March, May, July, October] and the 13th of others.
+            // note: Date.getMonth() starts counting from 0
+            var idesMonths = [2,4,6,9];
+            var ides = (idesMonths.indexOf(d.getMonth()) > -1) ? 15 : 13;
+
+            if (n === ides) {
+                $('#thedate').text("the Ides of " + $.datepicker.formatDate('MM, yy', d))
+            } else {
+                $('#thedate').text($.datepicker.formatDate('MM d', d) + suffix + $.datepicker.formatDate(', yy', d));
+            }
 
         }
 
