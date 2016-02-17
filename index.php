@@ -26,9 +26,37 @@
 		<link href='https://fonts.googleapis.com/css?family=Roboto+Mono:400,700' rel='stylesheet' type='text/css'>
         <script>
 
+		var thumbsHosts = {};
+		var openerHost = "Jake Rodkin";
+
         $(document).ready(function(){
 
             $('#theepisode').text(episode);
+
+			thumbsHosts["Chris Remo"] = true;
+			thumbsHosts["Jake Rodkin"] = true;
+			thumbsHosts["Sean Vannaman"] = true;
+			thumbsHosts["Nick Breckon"] = true;
+			thumbsHosts["James Spafford"] = false;
+			thumbsHosts["Danielle Riendeau"] = false;
+			thumbsHosts["Steve Gaynor"] = false;
+			
+			var hostsSelect = $("#thumbsHosts");
+			$.each(thumbsHosts, function(key, value) {
+				hostsSelect.append($("<option />").val(key).text(key));
+			});
+			$('#thumbsHosts').attr('size', Object.keys(thumbsHosts).length);
+			setTheHostOrder();
+			
+			$('#hostup').click(function(){
+				moveUpItem();
+				setTheHostOrder();
+			});
+
+			$('#hostdown').click(function(){
+				moveDownItem();
+				setTheHostOrder();
+			});
 
             var d = new Date();
 
@@ -58,7 +86,7 @@
 				.append($('<tr align="center">')
 					.append($('<td>')
 						.append($('<strong>')
-							.html($('input[name=its]:checked', '#thumbsform').val().split(' ')[0].toUpperCase())
+							.html($('input[name=opener]:checked', '#thumbsform2').val().split(' ')[0].toUpperCase())
 						)
 					)
 				)
@@ -67,30 +95,84 @@
 						.html("It's " + $('#thedate').text())
 					)					
 				)
+				
+			var first = "This is Idle Thumbs " + episode + ", ";
+				
+			var hostsSelect = $("#thumbsHosts > option");
+			$.each(hostsSelect, function() {
+			
+			if (thumbsHosts[this.text]) {
+			
+			if ($("#thumbsform2 input:checkbox:checked:last").val() == this.text) {
+				first = "And ";
+			}
+			
+			$("#thescript")
 				.append($('<tr align="center">')
 					.append($('<td>')
 						.append($('<strong>')
-							.html($('input[name=date]:checked', '#thumbsform').val().split(' ')[0].toUpperCase())
+							.html(this.text.split(' ')[0].toUpperCase())
 						)
 					)
 				)
 				.append($('<tr>')
 					.append($('<td>')
-						.html("This is Idle Thumbs " + episode + ", I'm " + $('input[name=date]:checked', '#thumbsform').val())
+						.html(first + "I'm " + this.text)
 					)					
 				)
-				.append($('<tr align="center">')
-					.append($('<td>')
-						.append($('<strong>')
-							.html($('input[name=its]:checked', '#thumbsform').val().split(' ')[0].toUpperCase())
-						)
-					)
-				)
-				.append($('<tr>')
-					.append($('<td>')
-						.html("I'm " + $('input[name=its]:checked', '#thumbsform').val())
-					)					
-				);
+
+				first = "";
+				}
+			
+// 			   $('<input />', { type: 'checkbox', id: this.text.replace(" ", "-"), value: this.text, checked: thumbsHosts[this.text] }).appendTo($('#orderedHosts'));
+// 			   $('<label />', { 'for': this.text.replace(" ", "-"), text: this.text }).appendTo($('#orderedHosts'));
+// 			   $('<br />').appendTo($('#orderedHosts'));
+// 			   
+// 				$("#" + this.text.replace(" ", "-")).change(function () {
+// 					thumbsHosts[this.value] = this.checked;
+// 					setTheHostOrder();
+// 				});
+// 			   
+// 			   if (thumbsHosts[this.text]) {
+// 			   		var selectedHost = (this.text == openerHost);
+// 				   $('<input />', { type: 'radio', name: 'opener', id: 'opener-' + this.text.replace(" ", "-"), checked: selectedHost, value: this.text }).appendTo($('#openingHost'));
+// 				   $('<label />', { 'for': 'opener-' + this.text.replace(" ", "-"), text: this.text }).appendTo($('#openingHost'));
+// 				   $('<br />').appendTo($('#openingHost'));
+// 				   
+// 					$("#opener-" + this.text.replace(" ", "-")).change(function () {
+// 						openerHost = this.value;
+// 						console.log(this.value);
+// 						console.log(openerHost);
+// 					});
+// 			   }
+			});
+
+				
+				
+// 				.append($('<tr align="center">')
+// 					.append($('<td>')
+// 						.append($('<strong>')
+// 							.html($('input[name=date]:checked', '#thumbsform').val().split(' ')[0].toUpperCase())
+// 						)
+// 					)
+// 				)
+// 				.append($('<tr>')
+// 					.append($('<td>')
+// 						.html("This is Idle Thumbs " + episode + ", I'm " + $('input[name=date]:checked', '#thumbsform').val())
+// 					)					
+// 				)
+// 				.append($('<tr align="center">')
+// 					.append($('<td>')
+// 						.append($('<strong>')
+// 							.html($('input[name=its]:checked', '#thumbsform').val().split(' ')[0].toUpperCase())
+// 						)
+// 					)
+// 				)
+// 				.append($('<tr>')
+// 					.append($('<td>')
+// 						.html("I'm " + $('input[name=its]:checked', '#thumbsform').val())
+// 					)					
+// 				);
 		}
 
         function setTheDate(wed) {
@@ -123,12 +205,54 @@
             }
             
         }
+        
+        function setTheHostOrder() {
+			var hostsSelect = $("#thumbsHosts > option");
+			$('#orderedHosts').empty();
+			$('#openingHost').empty();
+			$.each(hostsSelect, function() {
+			   $('<input />', { type: 'checkbox', id: this.text.replace(" ", "-"), value: this.text, checked: thumbsHosts[this.text] }).appendTo($('#orderedHosts'));
+			   $('<label />', { 'for': this.text.replace(" ", "-"), text: this.text }).appendTo($('#orderedHosts'));
+			   $('<br />').appendTo($('#orderedHosts'));
+			   
+				$("#" + this.text.replace(" ", "-")).change(function () {
+					thumbsHosts[this.value] = this.checked;
+					setTheHostOrder();
+				});
+			   
+			   if (thumbsHosts[this.text]) {
+			   		var selectedHost = (this.text == openerHost);
+				   $('<input />', { type: 'radio', name: 'opener', id: 'opener-' + this.text.replace(" ", "-"), checked: selectedHost, value: this.text }).appendTo($('#openingHost'));
+				   $('<label />', { 'for': 'opener-' + this.text.replace(" ", "-"), text: this.text }).appendTo($('#openingHost'));
+				   $('<br />').appendTo($('#openingHost'));
+				   
+					$("#opener-" + this.text.replace(" ", "-")).change(function () {
+						openerHost = this.value;
+						makeTheScript();
+					});
+			   }
+			});
+			makeTheScript();
+        }
 
         function nextWednesday(date) {
             var ret = new Date(date||new Date());
             ret.setDate(ret.getDate() + (3 - 1 - ret.getDay() + 7) % 7 + 1);
             return ret;
         }
+        
+		function moveUpItem(){
+			$('#thumbsHosts option:selected').each(function(){
+				$(this).insertBefore($(this).prev());
+			});
+		}
+
+		function moveDownItem(){
+			$('#thumbsHosts option:selected').each(function(){
+				$(this).insertAfter($(this).next());
+			});
+		}
+        
         </script>
         <title>Idle Thumbs Opening Script</title>
         <meta name="viewport" content="width=device-width">
@@ -215,6 +339,27 @@
 						<input type="radio" name="date" id="date_nbreckon" value="Nick Breckon" />
 					</td>
 				</tr>
+			</table>
+        </form>
+        <form id="thumbsform2">
+        	<table>
+        		<tr>
+        			<td>
+			        	<select id="thumbsHosts"></select>
+			        </td>
+			        <td>
+			        	<input type="button" value="^" id="hostup" /><br />
+			        	<input type="button" value="v" id="hostdown" />
+			        </td>
+			    	<td>
+			    		<span id="orderedHosts">
+			    		</span>
+			    	</td>
+			    	<td>
+			    		<span id="openingHost">
+			    		</span>
+			    	</td>
+			    <tr>
 			</table>
         </form>
         <hr />
