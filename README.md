@@ -7,10 +7,11 @@ As per their request in Idle Thumbs 247, I have added the ability to have the da
 It's a single file so far. jQuery and jQuery UI are being pulled from a CDN. The CSS is inline. 
 
 Future ideas include:
-- Making it into an actual "script" with the names of people who should be saying what
-- Adding everyone's name (along with the ability to add guests) so the script can include introductions
-- Making list of participants re-arrangable, make script designate who says "I'm" vs "and I'm" (Nick last by default)
-- Being able to flag who says the date and episode number (default to Jake and Chris)
+- DONE ~~Making it into an actual "script" with the names of people who should be saying what~~
+- DONE ~~Adding everyone's name so the script can include introductions~~
+- Adding the ability to add guests
+- DONE ~~Making list of participants re-arrangable, make script designate who says "I'm" vs "and I'm" (Nick last by default)~~
+- DONE ~~Being able to flag who says the date and episode number (default to Jake and Chris)~~
 - Being able to change the date by +/- days
 - Being able to highlight a particular user (i.e., whoever is reading)
 
