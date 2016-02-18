@@ -35,7 +35,7 @@
 
 			thumbsHosts["Chris Remo"] = true;
 			thumbsHosts["Jake Rodkin"] = true;
-			thumbsHosts["Sean Vannaman"] = true;
+			thumbsHosts["Sean Vanaman"] = true;
 			thumbsHosts["Nick Breckon"] = true;
 			thumbsHosts["James Spafford"] = false;
 			thumbsHosts["Danielle Riendeau"] = false;
@@ -86,7 +86,7 @@
 				.append($('<tr align="center">')
 					.append($('<td>')
 						.append($('<strong>')
-							.html($('input[name=opener]:checked', '#thumbsform2').val().split(' ')[0].toUpperCase())
+							.html($('input[name=opener]:checked', '#thumbsform').val().split(' ')[0].toUpperCase())
 						)
 					)
 				)
@@ -103,7 +103,7 @@
 			
 			if (thumbsHosts[this.text]) {
 			
-			if ($("#thumbsform2 input:checkbox:checked:last").val() == this.text) {
+			if ($("#thumbsform input:checkbox:checked:last").val() == this.text) {
 				first = "And ";
 			}
 			
@@ -123,56 +123,7 @@
 
 				first = "";
 				}
-			
-// 			   $('<input />', { type: 'checkbox', id: this.text.replace(" ", "-"), value: this.text, checked: thumbsHosts[this.text] }).appendTo($('#orderedHosts'));
-// 			   $('<label />', { 'for': this.text.replace(" ", "-"), text: this.text }).appendTo($('#orderedHosts'));
-// 			   $('<br />').appendTo($('#orderedHosts'));
-// 			   
-// 				$("#" + this.text.replace(" ", "-")).change(function () {
-// 					thumbsHosts[this.value] = this.checked;
-// 					setTheHostOrder();
-// 				});
-// 			   
-// 			   if (thumbsHosts[this.text]) {
-// 			   		var selectedHost = (this.text == openerHost);
-// 				   $('<input />', { type: 'radio', name: 'opener', id: 'opener-' + this.text.replace(" ", "-"), checked: selectedHost, value: this.text }).appendTo($('#openingHost'));
-// 				   $('<label />', { 'for': 'opener-' + this.text.replace(" ", "-"), text: this.text }).appendTo($('#openingHost'));
-// 				   $('<br />').appendTo($('#openingHost'));
-// 				   
-// 					$("#opener-" + this.text.replace(" ", "-")).change(function () {
-// 						openerHost = this.value;
-// 						console.log(this.value);
-// 						console.log(openerHost);
-// 					});
-// 			   }
 			});
-
-				
-				
-// 				.append($('<tr align="center">')
-// 					.append($('<td>')
-// 						.append($('<strong>')
-// 							.html($('input[name=date]:checked', '#thumbsform').val().split(' ')[0].toUpperCase())
-// 						)
-// 					)
-// 				)
-// 				.append($('<tr>')
-// 					.append($('<td>')
-// 						.html("This is Idle Thumbs " + episode + ", I'm " + $('input[name=date]:checked', '#thumbsform').val())
-// 					)					
-// 				)
-// 				.append($('<tr align="center">')
-// 					.append($('<td>')
-// 						.append($('<strong>')
-// 							.html($('input[name=its]:checked', '#thumbsform').val().split(' ')[0].toUpperCase())
-// 						)
-// 					)
-// 				)
-// 				.append($('<tr>')
-// 					.append($('<td>')
-// 						.html("I'm " + $('input[name=its]:checked', '#thumbsform').val())
-// 					)					
-// 				);
 		}
 
         function setTheDate(wed) {
@@ -283,66 +234,21 @@
         <span id="wedhint"></span>
         <hr/>
         <form id="thumbsform">
-			<table>
-				<tr>
-					<td>
-						Thumb
-					</td>
-					<td>
-						"It's" Thumb
-					</td>
-					<td>
-						Dateline Thumb
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<input type="checkbox" name="thumb" id="thumb_cremo" checked /><label for="thumb_cremo">Chris Remo</label>
-					</td>
-					<td align="center">
-						<input type="radio" name="its" id="its_cremo" value="Chris Remo" />
-					</td>
-					<td align="center">
-						<input type="radio" name="date" id="date_cremo" value="Chris Remo" checked />
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<input type="checkbox" name="thumb" id="thumb_jrodkin" checked /><label for="thumb_jrodkin">Jake Rodkin</label>
-					</td>
-					<td align="center">
-						<input type="radio" name="its" id="its_jrodkin" value="Jake Rodkin" checked />
-					</td>
-					<td align="center">
-						<input type="radio" name="date" id="date_jrodkin" value="Jake Rodkin" />
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<input type="checkbox" name="thumb" id="thumb_svannaman" checked /><label for="thumb_svannaman">Sean Vannaman</label>
-					</td>
-					<td align="center">
-						<input type="radio" name="its" id="its_svannaman" value="Sean Vannaman" />
-					</td>
-					<td align="center">
-						<input type="radio" name="date" id="date_svannaman" value="Sean Vannaman" />
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<input type="checkbox" name="thumb" id="thumb_nbreckon" checked /><label for="thumb_nbreckon">Nick Breckon</label>
-					</td>
-					<td align="center">
-						<input type="radio" name="its" id="its_nbreckon" value="Nick Breckon" />
-					</td>
-					<td align="center">
-						<input type="radio" name="date" id="date_nbreckon" value="Nick Breckon" />
-					</td>
-				</tr>
-			</table>
-        </form>
-        <form id="thumbsform2">
         	<table>
+				<tr>
+        			<td>
+			        	All Thumbs
+			        </td>
+			        <td>			        	
+			        </td>
+			    	<td>
+			    		Available Thumbs
+			    	</td>
+			    	<td>
+			    		Opening Thumb
+			    	</td>
+			    <tr>
+
         		<tr>
         			<td>
 			        	<select id="thumbsHosts"></select>
