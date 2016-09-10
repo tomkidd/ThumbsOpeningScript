@@ -2,9 +2,9 @@
 
 This is the page I put together at http://schnapple.com/thumbs/ for Idle Thumbs to automate the reading of the date and episode number. It grabs the latest episode number from the podcast RSS feed and increments it by one, and it displays the date in the format they usually read it in. 
 
-As per their request in Idle Thumbs 247, I have added the ability to have the date be the following Wednesday so that if they record the show on Tuesday or prior it will have the date they intend to release it as. I've also added some formatting for phones (just the viewport size). 
+As per their request in Idle Thumbs 247, I have added the ability to have the date be the following Thursday so that if they record the show on Wednesday or prior it will have the date they intend to release it as. I've also added some formatting for phones (just the viewport size). 
 
-It's a single file so far. jQuery and jQuery UI are being pulled from a CDN. The CSS is inline. 
+jQuery and jQuery UI are being pulled from a CDN. The CSS is inline. The select box is re-styled for iOS from some code I found on StackOverflow.
 
 Future ideas include:
 - DONE ~~Making it into an actual "script" with the names of people who should be saying what~~
